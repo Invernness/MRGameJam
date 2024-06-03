@@ -10,6 +10,8 @@ public class Grab : MonoBehaviour
     [SerializeField] bool bossGrabbed;
     [SerializeField] Transform lookAt;
     bool timer;
+    [SerializeField] Transform forceDir;
+    float force;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,7 @@ public class Grab : MonoBehaviour
         nextToBoss = false;
         bossGrabbed = false;
         timer = true;
+        force = -200f;
     }
 
     // Update is called once per frame
@@ -33,12 +36,21 @@ public class Grab : MonoBehaviour
             bossGrabbed = false;
             timer = false;
             Invoke("SetTimer", 0.2f);
+            Boss.GetComponent<CapsuleCollider>().enabled = true;
         }
 
         if (bossGrabbed)
         {
             Boss.transform.position = GrabLocation.position;
             Boss.transform.LookAt(lookAt);
+            Boss.GetComponent<CapsuleCollider>().enabled = false;
+        }
+
+        if(bossGrabbed && Input.GetMouseButtonDown(1))
+        {
+            bossGrabbed = false;
+            Boss.GetComponent<BossScript>().Throw(forceDir, force);
+            Boss.GetComponent<CapsuleCollider>().enabled = true;
         }
 
 
