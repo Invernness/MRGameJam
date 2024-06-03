@@ -13,6 +13,8 @@ public class Grab : MonoBehaviour
     [SerializeField] Transform forceDir;
     float force;
 
+    [SerializeField] bool leftClicking;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class Grab : MonoBehaviour
         bossGrabbed = false;
         timer = true;
         force = -200f;
+        leftClicking = false;
     }
 
     // Update is called once per frame
@@ -53,8 +56,44 @@ public class Grab : MonoBehaviour
             Boss.GetComponent<CapsuleCollider>().enabled = true;
         }
 
+        if(bossGrabbed && leftClicking)
+        {
+            Invoke("LeftClicking", 0.4f);
+        }
+        if (!Input.GetMouseButton(0))
+        {
+            leftClicking = false;
+            
+        }
+        else
+        {
+            leftClicking = true;
+        }
+        if (!bossGrabbed)
+        {
+            GameObject.Find("CameraHolder").GetComponent<Animator>().SetBool("Strangling", false);
+        }
+
+        if (Input.GetMouseButtonUp(0) && GameObject.Find("CameraHolder").GetComponent<Animator>().GetBool("Strangling") == true)
+        {
+            GameObject.Find("CameraHolder").GetComponent<Animator>().SetBool("Strangling", false);
+            bossGrabbed = false;
+            Boss.GetComponent<CapsuleCollider>().enabled = true;
+        }
+
 
     }
+
+
+
+    void LeftClicking()
+    {
+        if (leftClicking && bossGrabbed)
+        {
+            GameObject.Find("CameraHolder").GetComponent<Animator>().SetBool("Strangling", true);
+        }
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
