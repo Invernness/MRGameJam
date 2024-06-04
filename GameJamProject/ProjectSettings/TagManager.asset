@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Boss
+  - Window1
+  - Window2
+  - Window3
   layers:
   - Default
   - TransparentFX

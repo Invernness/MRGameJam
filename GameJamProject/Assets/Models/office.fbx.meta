@@ -2,7 +2,34 @@ fileFormatVersion: 2
 guid: bad481a7f5f0e134198ed0c95c195900
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -4559829878940053931
+    second: Mouse001|Keyboard001|Take 001|BaseLayer
+  - first:
+      74: -5398812162125727234
+    second: Mouse001|Monitor001|Take 001|BaseLayer
+  - first:
+      74: 8221957039951552750
+    second: Mouse001|Mouse001|Take 001|BaseLayer
+  - first:
+      74: 1558852886803656523
+    second: Keyboard001|Keyboard001|Take 001|BaseLayer
+  - first:
+      74: 6257802244178670700
+    second: Keyboard001|Monitor001|Take 001|BaseLayer
+  - first:
+      74: 2608714993787246419
+    second: Keyboard001|Mouse001|Take 001|BaseLayer
+  - first:
+      74: 4586837109050410090
+    second: Monitor001|Keyboard001|Take 001|BaseLayer
+  - first:
+      74: 1044944410250022202
+    second: Monitor001|Monitor001|Take 001|BaseLayer
+  - first:
+      74: -3392807578250161408
+    second: Monitor001|Mouse001|Take 001|BaseLayer
   externalObjects: {}
   materials:
     materialImportMode: 2
