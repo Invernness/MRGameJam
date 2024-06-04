@@ -4532,6 +4532,7 @@ MonoBehaviour:
   - {fileID: 1869764430}
   - {fileID: 1500821821}
   - {fileID: 1632972356}
+  Health: 0
 --- !u!1 &761247545 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6496161157824341374, guid: cdf8d9ad23f6ed347946ad73f0de4d15, type: 3}
@@ -8884,7 +8885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22a70b8f34eeafa4493ac372330c9ca1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.055287838
+      value: -1.43
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22a70b8f34eeafa4493ac372330c9ca1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8892,7 +8893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22a70b8f34eeafa4493ac372330c9ca1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.431
+      value: -3.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22a70b8f34eeafa4493ac372330c9ca1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15596,6 +15597,10 @@ PrefabInstance:
     - target: {fileID: 3131958520586351679, guid: cdf8d9ad23f6ed347946ad73f0de4d15, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3132298949201882920, guid: cdf8d9ad23f6ed347946ad73f0de4d15, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3135310976770232138, guid: cdf8d9ad23f6ed347946ad73f0de4d15, type: 3}
       propertyPath: m_IsActive
