@@ -6,6 +6,8 @@ public class BossScript : MonoBehaviour
 {
     [SerializeField] GameObject[] windows;
     [SerializeField] GameObject[] brokenWindows;
+    [SerializeField] Collider[] col;
+    [SerializeField] Animator anim;
 
     [SerializeField] float Health;
     bool timer;
@@ -14,6 +16,8 @@ public class BossScript : MonoBehaviour
     {
         Health = 100f;
         timer = true;
+
+        //Invoke("Die", 2f);
     }
 
     // Update is called once per frame
@@ -30,11 +34,19 @@ public class BossScript : MonoBehaviour
             Die();
         }
 
+
+
     }
 
     void Die()
     {
-        GameObject.Destroy(this.gameObject);
+        //GameObject.Destroy(this.gameObject);
+        foreach (Collider collid in col)
+        {
+            //collid.enabled = true;
+        }
+        //anim.enabled = false;
+
     }
 
     void Strangle()
