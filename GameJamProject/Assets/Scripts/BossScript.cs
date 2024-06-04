@@ -7,17 +7,49 @@ public class BossScript : MonoBehaviour
     [SerializeField] GameObject[] windows;
     [SerializeField] GameObject[] brokenWindows;
 
-
+    [SerializeField] float Health;
+    bool timer;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Health = 100f;
+        timer = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(GameObject.Find("CameraHolder").GetComponent<Animator>().GetBool("Strangling") == true)
+        {
+            Strangle();
+        }
+
+        if(Health <= 0)
+        {
+            Health = 0f;
+            Die();
+        }
+
+    }
+
+    void Die()
+    {
+        GameObject.Destroy(this.gameObject);
+    }
+
+    void Strangle()
+    {
+        if (timer)
+        {
+            Health = Health - 10f;
+            timer = false;
+            Invoke("SetTimer", 1f);
+        }
+    }
+
+    void SetTimer()
+    {
+        timer = true;
     }
 
     public void Throw(Transform forceDir, float force)
