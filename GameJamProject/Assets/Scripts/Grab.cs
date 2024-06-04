@@ -40,6 +40,7 @@ public class Grab : MonoBehaviour
             timer = false;
             Invoke("SetTimer", 0.2f);
             Boss.GetComponent<CapsuleCollider>().enabled = true;
+            GameObject.Find("CameraHolder").GetComponent<Animator>().SetBool("Grabbed", false);
         }
 
         if (bossGrabbed)
@@ -54,6 +55,7 @@ public class Grab : MonoBehaviour
             bossGrabbed = false;
             Boss.GetComponent<BossScript>().Throw(forceDir, force);
             Boss.GetComponent<CapsuleCollider>().enabled = true;
+            GameObject.Find("CameraHolder").GetComponent<Animator>().SetBool("Grabbed", false);
         }
 
         if(bossGrabbed && leftClicking)
@@ -91,6 +93,10 @@ public class Grab : MonoBehaviour
         if (leftClicking && bossGrabbed)
         {
             GameObject.Find("CameraHolder").GetComponent<Animator>().SetBool("Strangling", true);
+        }
+        if (!leftClicking && bossGrabbed)
+        {
+            GameObject.Find("CameraHolder").GetComponent<Animator>().SetBool("Grabbed", true);
         }
     }
 
