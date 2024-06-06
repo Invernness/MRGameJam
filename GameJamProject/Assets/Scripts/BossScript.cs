@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class BossScript : MonoBehaviour
 {
-    [SerializeField] GameObject[] windows;
-    [SerializeField] GameObject[] brokenWindows;
+    public GameObject[] windows;
+    public GameObject[] brokenWindows;
     [SerializeField] Collider[] col;
     [SerializeField] Animator anim;
+    [SerializeField] GameObject hipsCol;
 
-    [SerializeField] float Health;
+    public float Health;
     bool timer;
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,10 @@ public class BossScript : MonoBehaviour
             Die();
         }
 
-
+        if (GameObject.Find("Player").GetComponent<Grab>().bossGrabbed)
+        {
+            Ragdoll();
+        }
 
     }
 
@@ -43,10 +47,20 @@ public class BossScript : MonoBehaviour
         //GameObject.Destroy(this.gameObject);
         foreach (Collider collid in col)
         {
-            //collid.enabled = true;
+            collid.enabled = true;
         }
-        //anim.enabled = false;
+        anim.enabled = false;
 
+    }
+
+    public void Ragdoll()
+    {
+        foreach (Collider collid in col)
+        {
+            collid.enabled = true;
+        }
+        anim.enabled = false;
+        hipsCol.GetComponent<CapsuleCollider>().enabled = false;
     }
 
     void Strangle()
@@ -66,11 +80,12 @@ public class BossScript : MonoBehaviour
 
     public void Throw(Transform forceDir, float force)
     {
-        GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Impulse);
+        hipsCol.GetComponent<Rigidbody>().AddForce(forceDir.transform.position * force, ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        /*
         if(collision.collider.tag == "Window1")
         {
             windows[0].gameObject.SetActive(false);
@@ -88,6 +103,9 @@ public class BossScript : MonoBehaviour
             windows[2].gameObject.SetActive(false);
             brokenWindows[2].gameObject.SetActive(true);
         }
+        */
+
+
 
     }
 

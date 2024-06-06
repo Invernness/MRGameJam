@@ -8,6 +8,7 @@ TagManager:
   - Window1
   - Window2
   - Window3
+  - Hurt
   layers:
   - Default
   - TransparentFX
@@ -17,10 +18,10 @@ TagManager:
   - UI
   - Ground
   - Light
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - Broken
+  - Hurt
   - 
   - 
   - 

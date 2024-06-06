@@ -6,8 +6,11 @@ public class Grab : MonoBehaviour
 {
     [SerializeField] bool nextToBoss;
     [SerializeField] GameObject Boss;
+    [SerializeField] GameObject firstBoss;
+    [SerializeField] GameObject secondBoss;
     [SerializeField] Transform GrabLocation;
-    [SerializeField] bool bossGrabbed;
+    [SerializeField] Transform GrabLocation2;
+    public bool bossGrabbed;
     [SerializeField] Transform lookAt;
     bool timer;
     [SerializeField] Transform forceDir;
@@ -21,13 +24,22 @@ public class Grab : MonoBehaviour
         nextToBoss = false;
         bossGrabbed = false;
         timer = true;
-        force = -200f;
+        force = -100f;
         leftClicking = false;
+        Boss = secondBoss;
+        GrabLocation = GrabLocation2;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(firstBoss.GetComponent<BossScript>().Health <= 0)
+        {
+            Boss = secondBoss;
+            GrabLocation = GrabLocation2;
+        }
+
+
         if (Input.GetMouseButtonDown(0) && nextToBoss && !bossGrabbed && timer)
         {
             bossGrabbed = true;
@@ -39,7 +51,8 @@ public class Grab : MonoBehaviour
             bossGrabbed = false;
             timer = false;
             Invoke("SetTimer", 0.2f);
-            Boss.GetComponent<CapsuleCollider>().enabled = true;
+            //Boss.GetComponent<CapsuleCollider>().enabled = true;
+            //Boss.GetComponentInParent<CapsuleCollider>().enabled = true;
             GameObject.Find("CameraHolder").GetComponent<Animator>().SetBool("Grabbed", false);
         }
 
@@ -47,14 +60,18 @@ public class Grab : MonoBehaviour
         {
             Boss.transform.position = GrabLocation.position;
             Boss.transform.LookAt(lookAt);
-            Boss.GetComponent<CapsuleCollider>().enabled = false;
+
+            //Boss.GetComponent<CapsuleCollider>().enabled = false;
+            
+            //Boss.GetComponentInParent<CapsuleCollider>().enabled = false;
         }
 
         if(bossGrabbed && Input.GetMouseButtonDown(1))
         {
             bossGrabbed = false;
-            Boss.GetComponent<BossScript>().Throw(forceDir, force);
-            Boss.GetComponent<CapsuleCollider>().enabled = true;
+            Boss.GetComponentInParent<BossScript>().Throw(forceDir, force);
+            //Boss.GetComponent<CapsuleCollider>().enabled = true;
+            //Boss.GetComponentInParent<CapsuleCollider>().enabled = true;
             GameObject.Find("CameraHolder").GetComponent<Animator>().SetBool("Grabbed", false);
         }
 
