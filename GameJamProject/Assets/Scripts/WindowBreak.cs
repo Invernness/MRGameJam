@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WindowBreak : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class WindowBreak : MonoBehaviour
     AudioClip grunt;
     public AudioClip[] thumpArray;
     AudioClip thump;
+    public AudioClip Alright;
 
     public AudioClip falling;
 
@@ -99,9 +101,31 @@ public class WindowBreak : MonoBehaviour
 
         }
 
+        if (other.tag == "Kill")
+        {
+            Invoke("All", 2f);
+
+            Invoke("Fade", 5f);
+            Invoke("ChangeScene", 8f);
+        }
+
 
     }
 
 
+    void All()
+    {
+        GameObject.Find("CameraHolder").GetComponent<AudioSource>().PlayOneShot(Alright);
+    }
+
+    void ChangeScene()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    void Fade()
+    {
+        GameObject.Find("Fade").GetComponent<Animator>().SetTrigger("Trigger");
+    }
 
 }

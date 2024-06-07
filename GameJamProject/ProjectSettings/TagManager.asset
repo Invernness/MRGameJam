@@ -10,6 +10,7 @@ TagManager:
   - Window3
   - Hurt
   - Falling
+  - Kill
   layers:
   - Default
   - TransparentFX
