@@ -9,7 +9,9 @@ public class BossScript : MonoBehaviour
     [SerializeField] Collider[] col;
     [SerializeField] Animator anim;
     [SerializeField] GameObject hipsCol;
-
+    public AudioClip strangleSound;
+    public AudioClip death;
+    bool playing = false;
     public float Health;
     bool timer;
     // Start is called before the first frame update
@@ -40,6 +42,20 @@ public class BossScript : MonoBehaviour
             Ragdoll();
         }
 
+        
+        if (GameObject.Find("CameraHolder").GetComponent<Animator>().GetBool("Strangling") == true && playing == false)
+        {
+            print("Playing SFX");
+            GetComponent<AudioSource>().PlayOneShot(strangleSound);
+            playing = true;
+        }
+        if (GameObject.Find("CameraHolder").GetComponent<Animator>().GetBool("Strangling") == false)
+        {
+            print("Stop");
+            GetComponent<AudioSource>().Stop();
+            playing = false;
+        }
+
     }
 
     void Die()
@@ -50,6 +66,10 @@ public class BossScript : MonoBehaviour
             collid.enabled = true;
         }
         anim.enabled = false;
+
+        GetComponent<AudioSource>().Stop();
+
+        GetComponent<AudioSource>().PlayOneShot(death);
 
     }
 
@@ -70,6 +90,7 @@ public class BossScript : MonoBehaviour
             Health = Health - 10f;
             timer = false;
             Invoke("SetTimer", 1f);
+            
         }
     }
 

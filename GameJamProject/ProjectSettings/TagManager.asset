@@ -9,6 +9,7 @@ TagManager:
   - Window2
   - Window3
   - Hurt
+  - Falling
   layers:
   - Default
   - TransparentFX
